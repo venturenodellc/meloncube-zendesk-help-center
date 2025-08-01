@@ -50,18 +50,18 @@
     <h2 class="help-title">Other Ways To Find Help</h2>
     <ul class="help-list">
       <li class="blocks-item">
-          <a href='https://www.bisecthosting.com/discord' target="_blank" class="blocks-item-link">
+          <a href='https://www.meloncube.net/discord' target="_blank" class="blocks-item-link">
             <img src="{{asset 'discord.svg'}}" height="106px" width="106px" />
             <span class="blocks-item-title">Discord Community</span>
             <span class="blocks-item-description">We've got our ear to the ground. Here's what you need to know.</span>
           </a>
       </li>
       <li class="blocks-item">
-          <a href='https://games.bisecthosting.com/docs' target="_blank" class="blocks-item-link">
-            <img src="{{asset 'chatBubble.svg'}}" height="106px" width="106px" />
-            <span class="blocks-item-title">Submit a Ticket</span>
-            <span class="blocks-item-description">We've got our ear to the ground. Here's what you need to know.</span>
-          </a>
+          {{#link 'new_request' class="blocks-item-link"}}
+              <img src="{{asset 'chatBubble.svg'}}" height="106px" width="106px" />
+              <span class="blocks-item-title">Submit a Ticket</span>
+              <span class="blocks-item-description">We've got our ear to the ground. Here's what you need to know.</span>
+          {{/link}}
       </li>
     </ul>
 
