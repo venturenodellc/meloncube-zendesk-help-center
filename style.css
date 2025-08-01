@@ -682,7 +682,8 @@ ul {
 }
 
 .user-nav-list {
-  display: block;
+  display: flex;
+  align-items: center;
   list-style: none;
 }
 .user-nav-list > li {
@@ -953,7 +954,11 @@ ul {
 /***** Custom Header Buttons *****/
 .support-link {
   font-weight: 700;
-  margin: 0 36px;
+}
+@media (min-width: 1024px) {
+  .support-link {
+    margin: 0 36px;
+  }
 }
 
 .support-pill {
@@ -978,7 +983,13 @@ ul {
   background-color: #E9E9E9 !important;
 }
 
-.panel-btn {
+.my-tickets-btn {
+  display: flex !important;
+  justify-content: center;
+  gap: 4px;
+}
+
+.new-server-btn {
   border: 1px solid #3BB54A !important;
   background-color: #3BB54A;
   border-radius: 10px;
@@ -989,7 +1000,7 @@ ul {
   transition: all;
   transition-duration: 0.3s;
 }
-.panel-btn:hover, .panel-btn:focus .panel-btn:active {
+.new-server-btn:hover, .new-server-btn:focus .new-server-btn:active {
   border-color: #109648 !important;
   background-color: #109648 !important;
 }
@@ -2055,54 +2066,60 @@ ul {
   overflow: auto;
   white-space: pre;
 }
+
 .article-body blockquote {
+  display: flex;
   background-color: #F5F7FA;
-  border-radius: 15px;
-  color: #383838 !important;
-  padding: 16px 24px;
+  padding: 15px;
+  margin: 12px 0;
 }
-.article-content .blockquote-label {
+
+.blockquote-default {
+  margin-left: 12px !important;
+  padding: 24px !important;
+  border-left: solid 12px #3AB64B;
+  border-radius: 12px;
+}
+
+.blockquote-requirement, .blockquote-default {
+  flex-direction: column;
+  gap: 16px;
+}
+
+.blockquote-label {
   font-weight: 700;
   display: flex;
   align-items: center;
 }
-.article-content .blockquote-content {
-  font-size: 14px;
-}
-.article-content .blockquote-icon {
-  margin-right: 8px;
-}
-
-.article-content .blockquote-note {
-  display: flex;
-  padding: 15px;
-  margin: 20px 0;
-  font-style: normal;
-  color: #2f3941;
-}
-.article-content .blockquote-note .blockquote-label {
+.blockquote-note .blockquote-label {
   align-self: center;
   height: 100%;
   color: #109648;
 }
-.article-content .blockquote-note .blockquote-content {
+.blockquote-requirement .blockquote-label {
+  color: #DF3F55;
+}
+
+.blockquote-content {
+  font-size: 14px;
+}
+.blockquote-note .blockquote-content {
   margin-left: 12px;
   padding-left: 12px;
   border-left: 2px solid #D7DBE0;
 }
+.blockquote-default .blockquote-content {
+  font-size: 16px;
+  font-weight: 500;
+}
+.blockquote-default .blockquote-content p {
+  margin: 0;
+}
 
-.article-content .blockquote-requirement {
-  display: flex;
-  flex-direction: column;
-  padding: 15px;
-  margin: 20px 0;
-  font-style: normal;
-  color: #2f3941;
+.blockquote-icon {
+  margin-right: 8px;
 }
-.article-content .blockquote-requirement .blockquote-label {
-  color: #DF3F55;
-  margin-bottom: 16px;
-}
+
 .article-body > p:last-child {
   margin-bottom: 0;
 }

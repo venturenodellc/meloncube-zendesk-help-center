@@ -1,5 +1,5 @@
 (function () {
-  'use strict';
+  "use strict";
 
   // Key map
   const ENTER = 13;
@@ -93,7 +93,10 @@
     this.toggle.addEventListener("click", this.clickHandler.bind(this));
     this.toggle.addEventListener("keydown", this.toggleKeyHandler.bind(this));
     this.menu.addEventListener("keydown", this.menuKeyHandler.bind(this));
-    document.body.addEventListener("click", this.outsideClickHandler.bind(this));
+    document.body.addEventListener(
+      "click",
+      this.outsideClickHandler.bind(this)
+    );
 
     const toggleId = this.toggle.getAttribute("id") || crypto.randomUUID();
     const menuId = this.menu.getAttribute("id") || crypto.randomUUID();
@@ -659,49 +662,48 @@
   });
 
   // Footer dropdown functionality
-  window.toggleFooterDropdown = function(button) {
-    const column = button.closest('.links-column');
-    const isOpen = column.getAttribute('data-open') === 'true';
-    
+  window.toggleFooterDropdown = function (button) {
+    const column = button.closest(".links-column");
+    const isOpen = column.getAttribute("data-open") === "true";
+
     // Close all other dropdowns first
-    const allColumns = document.querySelectorAll('.links-column');
-    allColumns.forEach(col => {
+    const allColumns = document.querySelectorAll(".links-column");
+    allColumns.forEach((col) => {
       if (col !== column) {
-        col.removeAttribute('data-open');
+        col.removeAttribute("data-open");
       }
     });
-    
+
     // Toggle current dropdown
     if (isOpen) {
-      column.removeAttribute('data-open');
+      column.removeAttribute("data-open");
     } else {
-      column.setAttribute('data-open', 'true');
+      column.setAttribute("data-open", "true");
     }
   };
 
   // Style blockquotes in article content based on their first word
   window.addEventListener("DOMContentLoaded", () => {
-    const articleContent = document.querySelector('.article-content');
+    const articleContent = document.querySelector(".article-content");
     if (!articleContent) return;
 
-    const blockquotes = articleContent.querySelectorAll('blockquote');
-    
+    const blockquotes = articleContent.querySelectorAll("blockquote");
+
     blockquotes.forEach((blockquote) => {
       const text = blockquote.textContent.trim();
       const firstWord = text.split(/\s+/)[0];
-      
-      if (firstWord === 'Note:' || firstWord === 'Requirement:') {
-        const parts = text.split(':');
-        const label = parts[0];
-        const content = parts.slice(1).join(':').trim();
+      const parts = text.split(":");
+      const label = parts[0];
+      const content = parts.slice(1).join(":").trim();
+      let svgIcon = "";
 
-        let svgIcon = '';
-        if (firstWord === 'Note:') {
+      if (firstWord === "Note:" || firstWord === "Requirement:") {
+        if (firstWord === "Note:") {
           svgIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16" class="blockquote-icon" aria-hidden="true">
             <circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/>
             <path fill="currentColor" d="M8 4a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0 3.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V8a.5.5 0 0 1 .5-.5z"/>
           </svg>`;
-        } else if (firstWord === 'Requirement:') {
+        } else if (firstWord === "Requirement:") {
           svgIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16" class="blockquote-icon" aria-hidden="true">
             <rect x="2" y="3" width="3" height="3" rx="2" fill="currentColor"/>
             <rect x="2" y="7" width="3" height="3" rx="2" fill="currentColor"/>
@@ -711,26 +713,43 @@
             <rect x="6" y="11.5" width="10" height="2" rx="1" fill="currentColor"/>
           </svg>`;
         }
-        
-        const labelSpan = document.createElement('span');
-        labelSpan.className = 'blockquote-label';
+
+        const labelSpan = document.createElement("span");
+        labelSpan.className = "blockquote-label";
         labelSpan.innerHTML = svgIcon + label;
-        
-        const contentSpan = document.createElement('span');
-        contentSpan.className = 'blockquote-content';
+
+        const contentSpan = document.createElement("span");
+        contentSpan.className = "blockquote-content";
         contentSpan.textContent = content;
-        
-        blockquote.innerHTML = '';
+
+        blockquote.innerHTML = "";
         blockquote.appendChild(labelSpan);
         blockquote.appendChild(contentSpan);
-        
-        if (firstWord === 'Note:') {
-          blockquote.classList.add('blockquote-note');
-        } else if (firstWord === 'Requirement:') {
-          blockquote.classList.add('blockquote-requirement');
+
+        if (firstWord === "Note:") {
+          blockquote.classList.add("blockquote-note");
+        } else if (firstWord === "Requirement:") {
+          blockquote.classList.add("blockquote-requirement");
         }
+      } else {
+        const quote = blockquote.innerHTML;
+
+        svgIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="21" viewBox="0 0 28 21" fill="none" aria-hidden="true">
+            <path d="M0 7.875C0 3.52406 3.35625 0 7.5 0H8C9.10625 0 10 0.938437 10 2.1C10 3.26156 9.10625 4.2 8 4.2H7.5C5.56875 4.2 4 5.84719 4 7.875V8.4H8C10.2063 8.4 12 10.2834 12 12.6V16.8C12 19.1166 10.2063 21 8 21H4C1.79375 21 0 19.1166 0 16.8V14.7V12.6V7.875ZM16 7.875C16 3.52406 19.3563 0 23.5 0H24C25.1063 0 26 0.938437 26 2.1C26 3.26156 25.1063 4.2 24 4.2H23.5C21.5688 4.2 20 5.84719 20 7.875V8.4H24C26.2062 8.4 28 10.2834 28 12.6V16.8C28 19.1166 26.2062 21 24 21H20C17.7938 21 16 19.1166 16 16.8V14.7V12.6V7.875Z" fill="#3AB64B"/>
+          </svg>`;
+
+        const quoteSvg = document.createElement("span");
+        quoteSvg.innerHTML = svgIcon;
+
+        const contentSpan = document.createElement("span");
+        contentSpan.className = "blockquote-content";
+        contentSpan.innerHTML = quote;
+
+        blockquote.innerHTML = "";
+        blockquote.appendChild(quoteSvg);
+        blockquote.appendChild(contentSpan);
+        blockquote.classList.add("blockquote-default");
       }
     });
   });
-
 })();
