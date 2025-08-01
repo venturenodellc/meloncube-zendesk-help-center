@@ -1327,6 +1327,7 @@ ul {
   padding: 0 20px;
   text-align: center;
   width: 100%;
+  margin-top: -35px;
 }
 .hero-inner {
   position: relative;
@@ -1923,7 +1924,7 @@ ul {
   font-weight: 600;
   line-height: 50px;
   text-transform: capitalize;
-  margin-bottom: 12px;
+  padding-bottom: 8px;
 }
 @media (min-width: 768px) {
   .article-title {
@@ -2064,6 +2065,9 @@ ul {
   font-weight: 700;
   display: flex;
   align-items: center;
+}
+.article-content .blockquote-content {
+  font-size: 14px;
 }
 .article-content .blockquote-icon {
   margin-right: 8px;
